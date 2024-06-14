@@ -19,15 +19,20 @@ let selectedOption = "";
 let selectedValue = "";
 let selectedText = "";
 let valorSeleccionado = "";
-let prueba = ""
+let prueba = "";
+let currentIntervalId;
 
 selectElement.addEventListener("change", function() {
+    
    selectedOption = this.options[this.selectedIndex]; // Obtiene la opción seleccionada
    selectedValue = selectedOption.value; // Obtiene el valor de la opción seleccionada
    selectedText = selectedOption.textContent; // Obtiene el texto de la opción seleccionada
 
   // Guarda el valor seleccionado en una variable
    valorSeleccionado = selectedValue;
+
+
+
 });
 
 function obtenerHoraNy(){
@@ -83,18 +88,22 @@ function obtenerHoraLondon(){
 botonEnvio.addEventListener("click", darValor);
 
 function darValor(){
-    if(valorSeleccionado === "moscu"){
-        setInterval(obtenerHoraMoscow,1000);
- } else if(valorSeleccionado === "tokio"){
-        setInterval(obtenerHoraTokyo, 1000);
-    } else if (valorSeleccionado === "buenosaires"){
-        setInterval(obtenerHoraBsAs, 1000);
-    } else if (valorSeleccionado === "newyork"){
-        setInterval(obtenerHoraNy, 1000);
-    } else if (valorSeleccionado === "london"){
-        setInterval(obtenerHoraLondon, 1000);
-    }
-};
+    if (currentIntervalId) {
+        clearInterval(currentIntervalId);
+      }
+    
+      if (valorSeleccionado === "moscu") {
+        currentIntervalId = setInterval(obtenerHoraMoscow, 1000); // Store the ID
+      } else if (valorSeleccionado === "tokio") {
+        currentIntervalId = setInterval(obtenerHoraTokyo, 1000); // Store the ID
+      } else if (valorSeleccionado === "buenosaires") {
+        currentIntervalId = setInterval(obtenerHoraBsAs, 1000); //
+     } else if (valorSeleccionado === "newyork") {
+        currentIntervalId = setInterval(obtenerHoraNy, 1000); 
+     } else if (valorSeleccionado === "london") {
+        currentIntervalId = setInterval(obtenerHoraLondon, 1000);
+      }
+    } ////   ;
 
 MicroModal.init({
     openTrigger: 'data-custom-open',

@@ -1,10 +1,10 @@
-const { tz } = require("moment-timezone");
-var moment = require("moment");
-var MicroModal = require("micromodal");
-const dayjs = require("dayjs");
+const { tz } = require('moment-timezone');
+var moment = require('moment');
+var MicroModal = require('micromodal');
+const dayjs = require('dayjs');
 const fechaActual = dayjs();
 let botonEnvio = document.getElementById("apply");
-let hour = document.querySelector(".hour");
+let hour = document.querySelector('.hour');
 let lugar = document.getElementById("lugar");
 let fechaaActual = document.getElementById("fechaActual");
 
@@ -19,81 +19,90 @@ let selectedValue = "";
 let selectedText = "";
 let valorSeleccionado = "";
 let prueba = "";
+let currentIntervalId;
 
-selectElement.addEventListener("change", function () {
-  selectedOption = this.options[this.selectedIndex]; // Obtiene la opción seleccionada
-  selectedValue = selectedOption.value; // Obtiene el valor de la opción seleccionada
-  selectedText = selectedOption.textContent; // Obtiene el texto de la opción seleccionada
+selectElement.addEventListener("change", function() {
+    
+   selectedOption = this.options[this.selectedIndex]; // Obtiene la opción seleccionada
+   selectedValue = selectedOption.value; // Obtiene el valor de la opción seleccionada
+   selectedText = selectedOption.textContent; // Obtiene el texto de la opción seleccionada
 
   // Guarda el valor seleccionado en una variable
-  valorSeleccionado = selectedValue;
+   valorSeleccionado = selectedValue;
+
+
+
 });
 
-function obtenerHoraNy() {
-  const fechaHora = moment();
-  const fechaHoraNewYork = moment.tz(fechaHora, "America/New_York");
-  horalugar = fechaHoraNewYork.format("HH:mm:ss");
-  lugar.innerHTML = "New York, United States";
-  fechaaActual.innerHTML = fechaHoraNewYork.format("YYYY-MM-DD");
-  prueba = horalugar;
-  hour.innerHTML = horalugar;
+function obtenerHoraNy(){
+        const fechaHora = moment();
+        const fechaHoraNewYork = moment.tz(fechaHora, "America/New_York");
+        horalugar = (fechaHoraNewYork.format("HH:mm:ss"));
+        lugar.innerHTML = "New York, United States";
+        fechaaActual.innerHTML = fechaHoraNewYork.format("YYYY-MM-DD");
+        prueba = horalugar;
+        hour.innerHTML = horalugar;
+};
+
+function obtenerHoraBsAs(){
+    const fechaHora = moment();
+    const fechaHoraBuenosAires = moment.tz(fechaHora, "America/Buenos_Aires");
+    horalugar = (fechaHoraBuenosAires.format("HH:mm:ss"));
+    lugar.innerHTML = "Buenos Aires, Argentina";
+    fechaaActual.innerHTML = fechaHoraBuenosAires.format("YYYY-MM-DD");
+    prueba = horalugar;
+    hour.innerHTML = horalugar;
+};
+
+function obtenerHoraTokyo(){
+    const fechaHora = moment();
+    const fechaHoraTokio = moment.tz(fechaHora, "Asia/Tokyo");
+    horalugar = (fechaHoraTokio.format("HH:mm:ss"));
+    lugar.innerHTML = "Tokyo, Japan";
+    fechaaActual.innerHTML = fechaHoraTokio.format("YYYY-MM-DD");
+    prueba = horalugar;
+    hour.innerHTML = horalugar;
 }
 
-function obtenerHoraBsAs() {
-  const fechaHora = moment();
-  const fechaHoraBuenosAires = moment.tz(fechaHora, "America/Buenos_Aires");
-  horalugar = fechaHoraBuenosAires.format("HH:mm:ss");
-  lugar.innerHTML = "Buenos Aires, Argentina";
-  fechaaActual.innerHTML = fechaHoraBuenosAires.format("YYYY-MM-DD");
-  prueba = horalugar;
-  hour.innerHTML = horalugar;
+function obtenerHoraMoscow(){
+    const fechaHora = moment();
+    const fechaHoraMoscu = moment.tz(fechaHora, "Europe/Moscow");
+    horalugar = (fechaHoraMoscu.format("HH:mm:ss")); 
+    lugar.innerHTML = "Moscow, Russia";
+    fechaaActual.innerHTML = fechaHoraMoscu.format("YYYY-MM-DD");
+    prueba= horalugar;
+    hour.innerHTML = horalugar;
 }
 
-function obtenerHoraTokyo() {
-  const fechaHora = moment();
-  const fechaHoraTokio = moment.tz(fechaHora, "Asia/Tokyo");
-  horalugar = fechaHoraTokio.format("HH:mm:ss");
-  lugar.innerHTML = "Tokyo, Japan";
-  fechaaActual.innerHTML = fechaHoraTokio.format("YYYY-MM-DD");
-  prueba = horalugar;
-  hour.innerHTML = horalugar;
-}
-
-function obtenerHoraMoscow() {
-  const fechaHora = moment();
-  const fechaHoraMoscu = moment.tz(fechaHora, "Europe/Moscow");
-  horalugar = fechaHoraMoscu.format("HH:mm:ss");
-  lugar.innerHTML = "Moscow, Russia";
-  fechaaActual.innerHTML = fechaHoraMoscu.format("YYYY-MM-DD");
-  prueba = horalugar;
-  hour.innerHTML = horalugar;
-}
-
-function obtenerHoraLondon() {
-  const fechaHora = moment();
-  const fechaHoraLondon = moment.tz(fechaHora, "Europe/London");
-  horalugar = fechaHoraLondon.format("HH:mm:ss");
-  lugar.innerHTML = "London, England";
-  fechaaActual.innerHTML = fechaHoraLondon.format("YYYY-MM-DD");
-  prueba = horalugar;
-  hour.innerHTML = horalugar;
+function obtenerHoraLondon(){
+    const fechaHora = moment();
+    const fechaHoraLondon = moment.tz(fechaHora, "Europe/London");
+    horalugar = (fechaHoraLondon.format("HH:mm:ss"));
+    lugar.innerHTML = "London, England";
+    fechaaActual.innerHTML = fechaHoraLondon.format("YYYY-MM-DD");
+    prueba = horalugar;
+    hour.innerHTML = horalugar;
 }
 
 botonEnvio.addEventListener("click", darValor);
 
-function darValor() {
-  if (valorSeleccionado === "moscu") {
-    setInterval(obtenerHoraMoscow, 1000);
-  } else if (valorSeleccionado === "tokio") {
-    setInterval(obtenerHoraTokyo, 1000);
-  } else if (valorSeleccionado === "buenosaires") {
-    setInterval(obtenerHoraBsAs, 1000);
-  } else if (valorSeleccionado === "newyork") {
-    setInterval(obtenerHoraNy, 1000);
-  } else if (valorSeleccionado === "london") {
-    setInterval(obtenerHoraLondon, 1000);
-  }
-}
+function darValor(){
+    if (currentIntervalId) {
+        clearInterval(currentIntervalId);
+      }
+    
+      if (valorSeleccionado === "moscu") {
+        currentIntervalId = setInterval(obtenerHoraMoscow, 1000); // Store the ID
+      } else if (valorSeleccionado === "tokio") {
+        currentIntervalId = setInterval(obtenerHoraTokyo, 1000); // Store the ID
+      } else if (valorSeleccionado === "buenosaires") {
+        currentIntervalId = setInterval(obtenerHoraBsAs, 1000); //
+     } else if (valorSeleccionado === "newyork") {
+        currentIntervalId = setInterval(obtenerHoraNy, 1000); 
+     } else if (valorSeleccionado === "london") {
+        currentIntervalId = setInterval(obtenerHoraLondon, 1000);
+      }
+    } ////   ;
 
 MicroModal.init({
   openTrigger: "data-custom-open",
