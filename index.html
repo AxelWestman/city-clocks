@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPM</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="reloj-container">
+        <div class="reloj-inside">
+            <h2  data-custom-open="modal-1" role="button" class="place" id="lugar">Elegir ciudad</h2>
+            <h1 class="hour"></h1>
+            <h2 id="fechaActual"></h2>
+        </div>
+    </div>
+    <div class="micromodal-slide modal" id="modal-1" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-1-title">Change Timezone</h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close=""></button>
+                </header>
+                <div class="modal__content" id="modal-1-content">
+                    <form action="#">
+                        <select name="lenguajes" id="lang">
+                          
+                          <option value="london" id="london">London</option>
+                          <option value="newyork" id="newyork">New York</option>
+                          <option value="buenosaires" id="buenosaires">Buenos Aires</option>
+                          <option value="tokio" id="tokio">Tokyo</option>
+                          <option value="moscu" id="moscu">Moscow</option>
+                          <button class="modal__btn modal__btn-primary" id="apply">Continue</button>
+                        </select>
+                        <input type="submit" value="Enviar" id="envio" />
+                  </form>
+                </div>
+                <footer class="modal__footer">
+                    <button class="modal__btn modal__btn-primary" id="apply">Continue</button>
+                    <button class="modal__btn" data-micromodal-close="" aria-label="Close this dialog window">Close</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+</html>
